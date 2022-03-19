@@ -1,23 +1,46 @@
-import logo from './logo.svg';
 import './App.css';
+import Todo from './components/Todo';
+import Form from './components/Form';
+import { useState } from "react";
+import { nanoid } from "nanoid";
 
-function App() {
+function App(props) {
+  const [tasks, setTasks] = useState(props.lists);
+
+  function addTask(title) {
+    const newTask = {
+      id: nanoid(),
+      title: title,
+      completed: false
+    };
+    setTasks([...tasks, newTask]);
+  }
+
+  const deleteTask = (id) => {
+    const remainingTasks = tasks.filter(task => id !== task.id);
+    setTasks(remainingTasks);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1 className='text-center'>TodoApps</h1>
+      <p className='text-center'>Made By Deny Firdhaus</p>
+      <hr />
+      <Form addTask={addTask} />
+      <ul
+        className="todo-list stack-large stack-exception"
+        aria-labelledby="list-heading"
+      >
+        {tasks.map(task => (
+          <Todo
+            id={task.id}
+            title={task.title}
+            completed={task.completed}
+            key={task.id}
+            deleteTask={deleteTask}
+          />
+        ))}
+      </ul>
     </div>
   );
 }

@@ -1,0 +1,76 @@
+.todo {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.todo>* {
+    flex: 0 0 100%;
+}
+
+.ccb {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 1.25;
+    display: block;
+    position: relative;
+    min-height: 44px;
+    clear: left;
+}
+
+.ccb>label::before,
+.ccb>input[type="checkbox"] {
+    box-sizing: border-box;
+    top: 0px;
+    left: 0px;
+    width: 44px;
+    height: 44px;
+}
+
+.ccb>input[type="checkbox"] {
+    -webkit-font-smoothing: antialiased;
+    cursor: pointer;
+    z-index: 1;
+    margin: 0;
+    opacity: 0;
+}
+
+.ccb>label::before {
+    content: "";
+    position: absolute;
+    border: 2px solid currentColor;
+    background: transparent;
+}
+
+.ccb>label::after {
+    box-sizing: content-box;
+    content: "";
+    position: absolute;
+    top: 13px;
+    left: 11px;
+    width: 18px;
+    height: 7px;
+    transform: rotate(-45deg);
+    border: solid;
+    border-width: 0 0 5px 5px;
+    border-top-color: transparent;
+    opacity: 0;
+    background: transparent;
+}
+
+.ccb>input[type="checkbox"]:checked+label::after {
+    opacity: 1;
+}
+
+.ccb>label {
+    border: 3px solid black;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 0;
+    padding: 8px 15px 5px;
+    touch-action: manipulation;
+    cursor: pointer;
+}
