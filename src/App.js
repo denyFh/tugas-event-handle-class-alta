@@ -1,11 +1,14 @@
 import './App.css';
 import Todo from './components/Todo';
 import Form from './components/Form';
+import { Exdata } from './exampleData';
 import { useState } from "react";
 import { nanoid } from "nanoid";
 
-function App(props) {
-  const [tasks, setTasks] = useState(props.lists);
+function App() {
+  const [tasks, setTasks] = useState(Exdata);
+
+  console.log(tasks);
 
   function addTask(title) {
     const newTask = {
